@@ -2,7 +2,8 @@
 Trata-se de um projeto simples, feito 100% em arquitetura MVC, que tem a finalidade de gerar gráficos personalizáveis.
 
 ## Ferramentas
-- Delphi 10.4 Community Edition e seus componentes nativos;
+- Delphi 10.4 Community Editions;
+- TeeChart VCL/FMX Standard;
 - MySQL Server Community Edition.
 
 ## Instalação
