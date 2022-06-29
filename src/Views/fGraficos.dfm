@@ -137,8 +137,8 @@ object frmGraficos: TfrmGraficos
         Top = 38
         Width = 120
         Height = 21
-        Date = 44738.000000000000000000
-        Time = 0.723849548608996000
+        Date = 43831.000000000000000000
+        Time = 43831.000000000000000000
         TabOrder = 1
       end
       object edtDataF: TDateTimePicker
@@ -146,7 +146,7 @@ object frmGraficos: TfrmGraficos
         Top = 38
         Width = 120
         Height = 21
-        Date = 44738.000000000000000000
+        Date = 44926.000000000000000000
         Time = 0.723849548608996000
         TabOrder = 2
       end

@@ -23,13 +23,13 @@ type
     CONN_PASS:string;
 
     procedure LerIni;
-    procedure SetupConnection;
+    procedure SetupConnection(verifSchema: boolean = false);
 
   public
     constructor Create;
     destructor Destroy; override;
 
-    class function getConn: TFDConnection;                  
+    class function getConn: TFDConnection;
     class function resetConn: TFDConnection;
     class function getQuery: TFDQuery;
   end;
@@ -41,7 +41,7 @@ implementation
 
 constructor TMyConnection.Create;
 begin
-  Self.SetupConnection;
+  Self.SetupConnection(true);
 end;
 
 destructor TMyConnection.Destroy;
@@ -51,26 +51,33 @@ begin
   inherited;
 end;
 
-procedure TMyConnection.SetupConnection;
+procedure TMyConnection.SetupConnection(verifSchema: boolean = false);
 begin
   try
     if not Assigned(FConn) then
       FConn := TFDConnection.Create(nil);
 
     LerIni;
-
     FConn.Connected := False;
 
     FConn.Params.DriverID := 'MYSQL';
-
     FConn.Params.Add('Server='+ Self.CONN_IP);
     FConn.Params.Add('Port='+ Self.CONN_PORT);
-    FConn.Params.Database := Self.CONN_DBNAME;
     FConn.Params.UserName := Self.CONN_USER;
     FConn.Params.Password := Self.CONN_PASS;
     FConn.LoginPrompt     := False;
 
+    if not verifSchema then
+      FConn.Params.Database := Self.CONN_DBNAME;
+
     FConn.Connected := True;
+
+    if verifSchema then
+    begin
+      FConn.ExecSQL('CREATE DATABASE IF NOT EXISTS `' + Self.CONN_DBNAME + '`' );
+      Self.SetupConnection(false);
+    end;
+
   except
     ShowMessage('Erro ao conectar com o banco de dados.' + #13 + 'Verifique o arquivo .ini no diretório do executável.');
     Application.Terminate;
