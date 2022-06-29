@@ -7,7 +7,6 @@ uses
   uConfigGrafico in 'Models\uConfigGrafico.pas',
   fGraficos in 'Views\fGraficos.pas' {frmGraficos},
   fConfigs in 'Views\fConfigs.pas' {frmConfigs},
-  fConfigEmail in 'Views\fConfigEmail.pas' {frmConfigEmail},
   uGraficosController in 'Controllers\uGraficosController.pas',
   uDbSeeder in 'DAO\uDbSeeder.pas',
   uConfigGraficoDAO in 'DAO\uConfigGraficoDAO.pas',
